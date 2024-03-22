@@ -14,6 +14,12 @@
     return response.json(`ID : ${id} O nome do produto é ${user}`)
  })
 
+ app.get("/produtos",(request,response)=>{
+    const {page,limit}=request.query
+    return response.send(`A minha página: ${page} Mostrar ${limit}`) 
+ })
+
+
 
 
  app.listen(3333)
