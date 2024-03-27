@@ -1,25 +1,16 @@
- const express = require('express')
- const dotenv =require('dotenv')
-
- dotenv.config()
-
- const app=express()
-
- app.get("/api",(request,response)=>{
-    return response.json({message:"cadastro de produtos"})
- })
-
- app.get("/api/:id/:user",(request,response)=>{
-    const {id,user}=request.params
-    return response.json(`ID : ${id} O nome do produto é ${user}`)
- })
-
- app.get("/produtos",(request,response)=>{
-    const {page,limit}=request.query
-    return response.send(`A minha página: ${page} Mostrar ${limit}`) 
- })
+const express = require('express');
+const routes = require('./routes'); // Assuming routes are defined in a separate file
 
 
+const app = express();
+app.use(express.json())
+
+// Mounting the routes middleware
+app.use(routes);
 
 
- app.listen(3333)
+// Start the server
+const PORT = 3333;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
